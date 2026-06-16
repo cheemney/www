@@ -1,0 +1,15 @@
+{{- $.Scratch.Add "posts" slice -}}
+{{- range (where .Site.RegularPages "Section" "post") -}}
+  {{- $.Scratch.Add "posts" (dict
+    "title" .Title
+    "permalink" .Permalink
+    "date" (.Date.Format "2006-01-02")
+    "tags" (.Params.tags | default (slice))
+    "summary" (.Summary | plainify | chomp)
+  ) -}}
+{{- end -}}
+{
+  "title": {{ .Site.Title | jsonify }},
+  "url": {{ .Site.BaseURL | jsonify }},
+  "posts": {{ $.Scratch.Get "posts" | jsonify }}
+}

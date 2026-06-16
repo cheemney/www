@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="postlist" aria-label="Posts">
+  {{- $paginator := .Paginate (where .Site.RegularPages "Section" "post") -}}
+  <ul class="postlist__items">
+    {{- range $paginator.Pages -}}
+      <li class="postlist__item">
+        <a class="postlist__title" href="{{ .Permalink }}">{{ .Title }}</a>
+        <span class="postlist__meta">
+          <time datetime="{{ .Date.Format "Jan 2, 2006" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          <span class="postlist__sep" aria-hidden="true">&middot;</span>
+          <span class="postlist__reading">{{ .ReadingTime }} min read</span>
+        </span>
+      </li>
+    {{- end -}}
+  </ul>
+
+  {{- if gt $paginator.TotalPages 1 -}}
+    <nav class="pagination" aria-label="Pagination">
+      {{- if $paginator.HasPrev -}}
+        <a class="pagination__prev" href="{{ $paginator.Prev.URL }}">&larr; Newer</a>
+      {{- end -}}
+      {{- if $paginator.HasNext -}}
+        <a class="pagination__next" href="{{ $paginator.Next.URL }}">Older &rarr;</a>
+      {{- end -}}
+    </nav>
+  {{- end -}}
+</section>
+{{ end }}

@@ -1,0 +1,59 @@
+baseURL = "https://ilkem.space/"
+languageCode = "en-us"
+title = "ilkem's space"
+theme = ""
+
+enableRobotsTXT = true
+enableGitInfo = true
+summaryLength = 30
+
+[pagination]
+pagerSize = 20
+
+[sitemap]
+changefreq = "weekly"
+priority = 0.8
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML", "RSS"]
+page = ["HTML"]
+
+[markup]
+[markup.goldmark.renderer]
+unsafe = false
+[markup.highlight]
+noClasses = false
+style = "ayu"
+
+[params]
+description = "Technical writing and notes on web development, build systems, and software craft."
+author = "ilkem"
+twitter = "@ilkemburdur"
+github = "itsblok"
+locale = "en_US"
+
+[[params.sidebar]]
+label = "Writing"
+url = "/"
+weight = 1
+
+[[params.sidebar]]
+label = "About"
+url = "/about/"
+weight = 2
+
+[[params.sidebar]]
+label = "Search"
+url = "/search/"
+weight = 3
+
+[[params.sidebar]]
+label = "RSS"
+url = "/index.xml"
+weight = 4
+
+[taxonomies]
+tag = "tags"
+category = "categories"

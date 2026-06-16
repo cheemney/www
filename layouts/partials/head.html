@@ -1,0 +1,10 @@
+{{- $site := .Site -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{{- partial "seo.html" . -}}
+<link rel="stylesheet" href="/css/style.css">
+{{- range $site.Params.sidebar -}}
+  {{- if eq .label "RSS" -}}
+    <link rel="alternate" type="application/rss+xml" title="{{ $site.Title }} &raquo; Feed" href="{{ .url | absURL }}">
+  {{- end -}}
+{{- end -}}

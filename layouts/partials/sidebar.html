@@ -1,0 +1,28 @@
+{{- $site := .Site -}}
+{{- $current := . -}}
+<aside class="sidebar" aria-label="Primary">
+  <nav class="sidebar__nav" aria-label="Sidebar">
+    <ul>
+      {{- range sort $site.Params.sidebar "weight" -}}
+        {{- $isRSS := eq .label "RSS" -}}
+        {{- $isSearch := eq .label "Search" -}}
+        <li>
+          {{- if $isRSS -}}
+            <a href="{{ .url | absURL }}" type="application/rss+xml">{{ .label }}</a>
+          {{- else if $isSearch -}}
+            <a href="{{ .url }}" data-search-open aria-haspopup="dialog">{{ .label }}</a>
+          {{- else -}}
+            <a href="{{ .url }}"
+               {{- if $current.IsHome }} {{- if eq .url "/" }} class="is-active" aria-current="page"{{- end }}{{- end -}}
+               {{- if not $current.IsHome }} {{- if eq ($current.RelPermalink | strings.TrimSuffix "/") (.url | strings.TrimSuffix "/") }} class="is-active" aria-current="page"{{- end }}{{- end -}}
+            >{{ .label }}</a>
+          {{- end -}}
+        </li>
+      {{- end -}}
+    </ul>
+  </nav>
+  <p class="sidebar__foot">
+    &copy; {{ now.Year }}<br>
+    ilkem's space
+  </p>
+</aside>

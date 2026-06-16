@@ -1,0 +1,53 @@
+{{- $site := .Site -}}
+{{- $page := . -}}
+{{- $desc := "" -}}
+{{- if $page.Description -}}
+  {{- $desc = $page.Description -}}
+{{- else if and $page.Summary (ne $page.Summary "") -}}
+  {{- $desc = $page.Summary | plainify | chomp -}}
+{{- end -}}
+{{- if not $desc -}}
+  {{- $desc = $site.Params.description -}}
+{{- end -}}
+{{- $author := or $page.Params.author $site.Params.author -}}
+{{- $permalink := $page.Permalink -}}
+{{- $isHome := $page.IsHome -}}
+{{- $ogType := cond $isHome "website" "article" -}}
+{{- $pageTitle := cond $isHome $site.Title $page.Title -}}
+
+<title>{{ $pageTitle }} &middot; {{ $site.Title }}</title>
+
+<meta name="description" content="{{ $desc }}">
+<meta name="author" content="{{ $author }}">
+<meta name="generator" content="Hugo {{ hugo.Version }}">
+
+<link rel="canonical" href="{{ $permalink }}">
+
+{{- with $site.Params.locale }}<meta property="og:locale" content="{{ . }}">{{ end -}}
+
+<meta property="og:site_name" content="{{ $site.Title }}">
+<meta property="og:title" content="{{ $pageTitle }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ $ogType }}">
+<meta property="og:url" content="{{ $permalink }}">
+{{- if not $isHome -}}
+  {{- with $page.Date -}}
+    <meta property="article:published_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" }}">
+  {{- end -}}
+{{- end -}}
+{{- range $page.Params.tags -}}
+  <meta property="article:tag" content="{{ . }}">
+{{- end -}}
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ $pageTitle }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with $site.Params.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end -}}
+{{- with $site.Params.twitter }}<meta name="twitter:creator" content="{{ . }}">{{ end -}}
+
+{{- with $site.Params.github -}}
+  <link rel="me" href="https://github.com/{{ . }}">
+{{- end -}}
+
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light dark">

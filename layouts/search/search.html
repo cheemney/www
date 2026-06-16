@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="searchpage" aria-label="Search">
+  <h1 class="section__title">Search</h1>
+  <p class="searchpage__hint">
+    Press <kbd>/</kbd> anywhere on the site, or use the field below. Matches titles, summaries, and tags.
+  </p>
+
+  <div class="searchpage__field">
+    <input
+      id="searchpage-input"
+      class="searchpage__input"
+      type="search"
+      placeholder="Type to search&hellip;"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      aria-label="Search posts"
+    >
+    <span id="searchpage-status" class="searchpage__status" role="status" aria-live="polite"></span>
+  </div>
+
+  <ul id="searchpage-results" class="searchpage__results" aria-label="Search results"></ul>
+</section>
+
+<script src="/js/search.js" defer></script>
+{{ end }}

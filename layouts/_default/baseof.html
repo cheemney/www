@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en" }}" dir="ltr">
+<head>
+  {{- partial "head.html" . -}}
+  {{- block "head-extra" . }}{{ end -}}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="layout">
+    {{- partial "sidebar.html" . -}}
+    <main id="main" class="main" role="main">
+      {{- block "main" . }}{{ end -}}
+    </main>
+  </div>
+  {{- partial "search-overlay.html" . -}}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": {{ if .IsHome }}"WebSite"{{ else }}"BlogPosting"{{ end }},
+    "name": {{ .Site.Title }},
+    "url": {{ .Permalink }},
+    {{- if not .IsHome }}
+    "headline": {{ .Title }},
+    "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" }},
+    "author": {
+      "@type": "Person",
+      "name": {{ .Site.Params.author }}
+    }
+    {{- end }}
+  }
+  </script>
+</body>
+</html>

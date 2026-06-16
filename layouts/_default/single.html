@@ -1,0 +1,26 @@
+{{ define "main" }}
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post__header">
+    <h1 class="post__title" itemprop="headline">{{ .Title }}</h1>
+    <p class="post__meta">
+      <time datetime="{{ .Date.Format "Jan 2, 2006" }}" itemprop="datePublished">{{ .Date.Format "January 2, 2006" }}</time>
+      <span aria-hidden="true">&middot;</span>
+      <span>{{ .ReadingTime }} min read</span>
+      {{- with .Params.tags }}
+        <span aria-hidden="true">&middot;</span>
+        <span class="post__tags">
+          {{- range . -}}
+            <a href="{{ printf "/tags/%s/" (. | urlize) }}">#{{ . }}</a>
+          {{- end -}}
+        </span>
+      {{- end }}
+    </p>
+  </header>
+  <div class="post__body" itemprop="articleBody">
+    {{ .Content }}
+  </div>
+  <footer class="post__foot">
+    <a href="{{ .Site.BaseURL }}">&larr; Back to all writing</a>
+  </footer>
+</article>
+{{ end }}
