@@ -1,7 +1,6 @@
 baseURL = "https://ilkem.space/"
 languageCode = "en-us"
 title = "ilkem's space"
-theme = ""
 
 enableRobotsTXT = true
 enableGitInfo = true
