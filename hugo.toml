@@ -30,7 +30,7 @@ style = "ayu"
 description = "Technical writing and notes on web development, build systems, and software craft."
 author = "ilkem"
 twitter = "@ilkemburdur"
-github = "itsblok"
+github = "cheemney"
 locale = "en_US"
 
 [[params.sidebar]]

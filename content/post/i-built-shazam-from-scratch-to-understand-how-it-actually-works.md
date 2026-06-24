@@ -94,7 +94,7 @@ I wrote a test to verify alignment recovery — take a reference recording, extr
 
 After getting the fingerprinting math right, I needed real persistence. Two pieces:
 
-**WAV reader**: The RIFF/WAV format is a chunked container. You scan forward through chunks looking for `fmt ` (format descriptor) and `data` (raw samples). Unknown chunks (`LIST`, `INFO`, `smpl`, etc.) get skipped. The reader handles 8, 16, and 32-bit PCM and downmixes stereo to mono.
+**WAV reader**: The RIFF/WAV format is a chunked container. You scan forward through chunks looking for `fmt` (format descriptor) and `data` (raw samples). Unknown chunks (`LIST`, `INFO`, `smpl`, etc.) get skipped. The reader handles 8, 16, and 32-bit PCM and downmixes stereo to mono.
 
 One refactor I had to make: the original WAV writer wrote to `*os.File`. When I built the HTTP layer, I needed to encode WAV into a `bytes.Buffer` for test requests. I split it into `EncodeWAV(io.Writer)` plus a `WriteWAV(path)` wrapper. Obvious in hindsight, but a good example of how interface requirements propagate.
 
@@ -174,6 +174,6 @@ For a synthetic 3-song library:
 
 ## The Code
 
-The full source is at [github.com/itsblok/audiofp](https://github.com/itsblok/audiofp).
+The full source is at [github.com/cheemney/audiofp](https://github.com/cheemney/audiofp).
 
 If you're curious about how Shazam works and want something you can actually run, modify, and break — this might be useful.
