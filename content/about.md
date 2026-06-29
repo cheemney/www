@@ -15,4 +15,4 @@ Apart from that, I consume an unreasonable amount of coffee ☕, enjoy nerdy con
 
 If you're building something interesting, have a weird technical problem to solve, or just want to chat about software, or startups, feel free to say hi.
 
-[Slide into my inbox 👋](mailto:hi@ilkem.space)
+[GitHub](https://github.com/cheemney) · [LinkedIn](https://linkedin.com/in/ilkemburdur) · [Slide into my inbox 👋](mailto:hi@ilkem.space)
