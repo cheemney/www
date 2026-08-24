@@ -21,7 +21,7 @@ page = ["HTML"]
 
 [markup]
 [markup.goldmark.renderer]
-unsafe = false
+unsafe = true
 [markup.highlight]
 noClasses = false
 style = "ayu"
